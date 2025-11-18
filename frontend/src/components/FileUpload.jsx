@@ -8,8 +8,8 @@ const FileUpload = ({ type, onUpload, isProcessing }) => {
   const isHandwritten = type === 'handwritten';
   const title = isHandwritten ? 'Handwritten Notes' : 'Textbooks & PYQs';
   const description = isHandwritten 
-    ? 'Upload your messy handwritten notes' 
-    : 'Upload printed textbooks or previous year questions';
+    ? 'Upload handwritten notes' 
+    : 'Upload textbooks or previous year questions';
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -116,7 +116,7 @@ const FileUpload = ({ type, onUpload, isProcessing }) => {
           onClick={handleSubmit}
           disabled={isProcessing}
         >
-          {isProcessing ? '⏳ Processing...' : '🚀 Process File'}
+          {isProcessing ? 'Processing...' : 'Upload'}
         </button>
       )}
     </div>

@@ -1,15 +1,12 @@
 import axios from 'axios';
 
-// Backend bridge URL (Flask server)
 const API_BASE_URL = 'http://localhost:8000';
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 120000, // 2 minutes timeout
+  timeout: 120000,
 });
 
-// Upload handwritten notes (via Flask bridge to Langflow)
 export const uploadHandwrittenNotes = async (file) => {
   const formData = new FormData();
   formData.append('file', file);
@@ -28,7 +25,6 @@ export const uploadHandwrittenNotes = async (file) => {
   }
 };
 
-// Upload textbook/PYQ (via Flask bridge to Langflow)
 export const uploadTextbook = async (file) => {
   const formData = new FormData();
   formData.append('file', file);
@@ -47,7 +43,6 @@ export const uploadTextbook = async (file) => {
   }
 };
 
-// Generic Langflow trigger (if you need it)
 export const triggerLangflow = async (flowId, inputValue, tweaks = {}) => {
   try {
     const response = await api.post('/trigger-langflow', {

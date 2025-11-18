@@ -12,7 +12,7 @@
 }
 
 .processing-container {
-  background: white;
+  background: #16213e;
   border-radius: 20px;
   padding: 50px;
   text-align: center;
@@ -47,7 +47,7 @@
 }
 
 .processing-container h2 {
-  color: #333;
+  color: white;
   margin: 0 0 10px 0;
 }
 
@@ -65,7 +65,8 @@
 
 .step {
   padding: 15px;
-  background: #f8f9ff;
+  background: #1a1a2e;
+  color:white;
   border-radius: 10px;
   border-left: 4px solid #667eea;
   animation: pulse 2s ease-in-out infinite;
