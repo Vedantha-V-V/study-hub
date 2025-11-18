@@ -1,0 +1,128 @@
+.results-container {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.results-container h2 {
+  color: #333;
+  margin: 0 0 30px 0;
+  font-size: 2em;
+}
+
+.results-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.tab {
+  padding: 15px 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+  bottom: -2px;
+}
+
+.tab:hover {
+  color: #667eea;
+}
+
+.tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  font-weight: bold;
+}
+
+.results-content {
+  background: #f8f9ff;
+  border-radius: 15px;
+  padding: 30px;
+  max-height: 500px;
+  overflow-y: auto;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.results-content pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
+  color: #333;
+  font-size: 1em;
+}
+
+.results-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.results-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.results-content::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+.results-content::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  flex: 1;
+  min-width: 150px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.copy-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.new-btn {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:active {
+  transform: translateY(-1px);
+}
