@@ -10,6 +10,8 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [processingMessage, setProcessingMessage] = useState('Processing your file...');
   const [showChat, setShowChat] = useState(false);
+  const LangflowKey = import.meta.env.VITE_LANGFLOW_KEY;
+  const FlowID = import.meta.env.VITE_FLOW_ID
 
   const handleUpload = async (file, type) => {
     setIsProcessing(true);
@@ -129,7 +131,8 @@ const Home = () => {
         <div className="chat-content">
             <langflow-chat
               window_title="Study Bot"
-              flow_id="3862397f-0c3d-47e1-a409-9fd32afa4f2a"
+              flow_id={FlowID}
+              api_key={LangflowKey}
               host_url="http://localhost:7860">
             </langflow-chat>
         </div>
