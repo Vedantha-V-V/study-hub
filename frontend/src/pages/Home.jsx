@@ -31,8 +31,7 @@ const Home = () => {
 
       setSuccessMessage('Notes processing successful!');
       
-      // Auto-hide success message after 10 seconds
-      setTimeout(() => setSuccessMessage(''), 10000);
+      setTimeout(() => setSuccessMessage(''), 5000);
 
     } catch (err) {
       console.error('Error processing file:', err);
@@ -81,7 +80,7 @@ const Home = () => {
       {/* Main Content */}
       <main className="main-content">
         <div className="hero-section">
-          <div className="badge">✨ AI-Powered Learning</div>
+          <div className="badge">AI-Powered Learning</div>
           <p className="subtitle">Transform handwritten notes and textbooks into clean, organized text</p>
         </div>
 
@@ -104,11 +103,13 @@ const Home = () => {
         {!isProcessing && (
           <div className="upload-container">
             <FileUpload
+              setError={setError}
               type="handwritten"
               onUpload={handleUpload}
               isProcessing={isProcessing}
             />
             <FileUpload
+              setError={setError}
               type="textbook"
               onUpload={handleUpload}
               isProcessing={isProcessing}

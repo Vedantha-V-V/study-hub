@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import './FileUpload.css';
 
-const FileUpload = ({ type, onUpload, isProcessing }) => {
+const FileUpload = ({ setError, type, onUpload, isProcessing }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
 
   const isHandwritten = type === 'handwritten';
   const title = isHandwritten ? 'Handwritten Notes' : 'Textbooks & PYQs';
   const description = isHandwritten 
-    ? 'Upload handwritten notes' 
+    ? 'Upload handwritten notes (Max 1MB)' 
     : 'Upload textbooks or previous year questions';
 
   const handleDrag = (e) => {
@@ -26,24 +26,63 @@ const FileUpload = ({ type, onUpload, isProcessing }) => {
     e.stopPropagation();
     setDragActive(false);
 
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      if (file.type === 'application/pdf') {
-        setSelectedFile(file);
-      } else {
-        alert('Please upload a PDF file');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      // Check if multiple files
+      if (e.dataTransfer.files.length > 1) {
+        setError('Please upload only one file at a time');
+        return;
       }
+
+      const file = e.dataTransfer.files[0];
+      
+      // Check file type
+      if (file.type !== 'application/pdf') {
+        setError('Please upload a PDF file only');
+        return;
+      }
+
+      // Check file size for handwritten notes (1MB limit)
+      if (isHandwritten) {
+        const fileSizeMB = file.size / 1024 / 1024;
+        if (fileSizeMB > 1) {
+          setError(`File size is ${fileSizeMB.toFixed(2)}MB. Handwritten notes must be under 1MB.`);
+          return;
+        }
+      }
+
+      setSelectedFile(file);
     }
   };
 
   const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      if (file.type === 'application/pdf') {
-        setSelectedFile(file);
-      } else {
-        alert('Please upload a PDF file');
+    if (e.target.files && e.target.files.length > 0) {
+      // Check if multiple files
+      if (e.target.files.length > 1) {
+        setError('Please upload only one file at a time');
+        e.target.value = '';
+        return;
       }
+
+      const file = e.target.files[0];
+      
+      // Check file type
+      if (file.type !== 'application/pdf') {
+        setError('Please upload a PDF file only');
+        e.target.value = '';
+        return;
+      }
+
+      // Check file size for handwritten notes (1MB limit)
+      if (isHandwritten) {
+        const fileSizeMB = file.size / 1024 / 1024;
+        if (fileSizeMB > 1) {
+          setError(`File size is ${fileSizeMB.toFixed(2)}MB.\nHandwritten notes must be under 1MB.`);
+          e.target.value = '';
+          return;
+        }
+      }
+
+      setSelectedFile(file);
     }
   };
 
@@ -107,6 +146,7 @@ const FileUpload = ({ type, onUpload, isProcessing }) => {
           accept=".pdf"
           onChange={handleFileChange}
           style={{ display: 'none' }}
+          multiple={false}
         />
       </div>
 
