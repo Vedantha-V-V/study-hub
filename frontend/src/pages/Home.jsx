@@ -27,6 +27,7 @@ const Home = () => {
       }
 
       const processedText = response.text || '';
+      console.log(processedText)
 
       setSuccessMessage('Notes processing successful!');
       
@@ -54,7 +55,8 @@ const Home = () => {
           <button 
             className="chat-toggle-btn"
             onClick={() => setShowChat(!showChat)}>
-            💬 Chat
+              <span className="status-dot"></span>
+            Chat
           </button>
         </div>
         
@@ -119,16 +121,16 @@ const Home = () => {
 
       {/* Chat Sidebar */}
       <div className={`chat-sidebar ${showChat ? 'show' : ''}`}>
-        <div className="chat-header">
+        {/* <div className="chat-header">
           <h3>Chat</h3>
           <button onClick={() => setShowChat(false)} className="close-chat">✕</button>
-        </div>
+        </div> */}
         <div className="chat-content">
-           <langflow-chat
-    window_title="Study Bot"
-    flow_id="3862397f-0c3d-47e1-a409-9fd32afa4f2a"
-    host_url="http://localhost:7860">
-</langflow-chat>
+            <langflow-chat
+              window_title="Study Bot"
+              flow_id="3862397f-0c3d-47e1-a409-9fd32afa4f2a"
+              host_url="http://localhost:7860">
+            </langflow-chat>
         </div>
       </div>
 

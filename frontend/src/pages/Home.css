@@ -60,6 +60,14 @@
   backdrop-filter: blur(10px);
 }
 
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+
 .chat-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
@@ -193,12 +201,13 @@
 
 /* Chat Sidebar */
 .chat-sidebar {
+  padding:5px;
   position: fixed;
   top: 0;
-  right: -450px;
-  width: 450px;
+  right: -600px;
+  width: 600px;
   height: 100vh;
-  background: white;
+  background: #a5b4fc;
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
   transition: right 0.3s ease-out;
   z-index: 1000;
@@ -247,7 +256,10 @@
 
 .chat-content {
   flex: 1;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  overflow-y: scroll;
+  overflow-x:hidden;
 }
 
 .chat-content iframe {
